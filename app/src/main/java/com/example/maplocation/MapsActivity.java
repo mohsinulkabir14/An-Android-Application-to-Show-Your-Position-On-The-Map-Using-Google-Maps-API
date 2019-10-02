@@ -40,9 +40,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        
+        /* Location Manager use either the Network provider or GPS provider of the android device to fetch the location 
+        information of the user, like latitude or longitude. */
+        
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
+        
+        /* This part asks for location access permission from the user. */
+        
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]
                             {Manifest.permission.ACCESS_FINE_LOCATION},
@@ -52,15 +57,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+               /* User's latitude and longitude is fetched here using the location object. */
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
-
+                
+                
+              /* Geocoder derives the location name, the specific country and city of the user as a list. */
                 Geocoder geocoder = new Geocoder(getApplicationContext());
                 try {
                     List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                     String adress = addresses.get(0).getLocality() + ":";
                     adress += addresses.get(0).getCountryName();
-
+                
+              /* The latitude and longitude is combined and placed on the google map using a marker in the following part. */
+                    
                     LatLng latLng = new LatLng(latitude, longitude);
 
                     if (marker != null) {
@@ -92,7 +102,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         };
-
+        
+        /* As stated before, location manager uses either network provider or the gps provider to fetch user's location information. */
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
 
