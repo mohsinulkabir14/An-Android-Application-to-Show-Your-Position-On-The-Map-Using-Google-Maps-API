@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        /* Pressing this button would fetch your location and would show it on the map. Create this button on the xml file as well 
+        to use the reference here. */
+        
         button = (Button)findViewById(R.id.button);
 
         button.setOnClickListener(new View.OnClickListener() {
