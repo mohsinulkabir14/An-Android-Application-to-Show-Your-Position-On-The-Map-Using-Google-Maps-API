@@ -9,4 +9,4 @@ Here's a brief breakdown of how to build this project:
 #####  2. After this, you'll get a *'google_maps_api.xml'* file. An address is given in this file. As the lines are commented, carefully look for that address. Follow that address and you'll a get a google maps api key. Copy that key and paste it inside the highlighted section of the xml file. 
 
 
-#####  3. You'll see another two files, a java file and another xml file after creating a google maps activity. Go to app->src->main->java->com->example of this repository, so that you get the codes with explanations. 
+#####  3. You'll see another two files, a java file and another xml file after creating a google maps activity. Go to app->src->main->java->com->example->maplocation of this repository, so that you get the codes with explanations. 
